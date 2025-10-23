@@ -10,8 +10,9 @@ mapping_file = os.path.join(output_dir, "name_mapping.tsv")
 
 with open(input_fasta) as infile, open(output_fasta, "w") as outfile, open(mapping_file, "w") as mapfile:
     for i, record in enumerate(SeqIO.parse(infile, "fasta")):
+        full_header = record.description  # preserves full header even if truncated in .id
         new_id = f"HERVH{i:04d}"  # Unique PHYLIP-compatible ID
-        mapfile.write(f"{new_id}\t{record.id}\n")
+        mapfile.write(f"{new_id}\t{full_header}\n")
         record.id = new_id
         record.description = ""
         SeqIO.write(record, outfile, "fasta")
