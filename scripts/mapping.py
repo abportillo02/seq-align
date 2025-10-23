@@ -1,7 +1,7 @@
 from Bio import SeqIO
 import os
 
-input_fasta = "trimmed_dmr_hervh_aligned.fasta"
+input_fasta = "/home/abportillo/github_repo/seq-align/mafft/trimmed_dmr_hervh_aligned.fasta"
 output_dir = "/home/abportillo/github_repo/seq-align/mafft"
 os.makedirs(output_dir, exist_ok=True)
 
