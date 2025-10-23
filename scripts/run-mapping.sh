@@ -13,7 +13,5 @@
 source /home/abportillo/.bashrc
 conda activate /home/abportillo/.conda/envs/mamba_abner_BC
 
-
-
 # Run Python script
 python mapping.py
