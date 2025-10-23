@@ -12,4 +12,4 @@
 source ~/.bashrc
 conda activate mamba_abner_BC
 
-phyml -i trimmed_dmr_hervh_aligned.phy -d nt 
+phyml -i /home/abportillo/github_repo/seq-align/mafft/trimmed_dmr_hervh_aligned.phy -d nt 
