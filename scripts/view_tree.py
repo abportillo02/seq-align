@@ -7,4 +7,4 @@ ts.show_leaf_name = True
 ts.title.add_face(TextFace("HERVH DMR Tree", fsize=20), column=0)
 
 # Save tree as PNG image
-tree.render("hervh_dmr_tree.png", tree_style=ts, w=800, units="px")
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_dmr_tree.png", tree_style=ts, w=800, units="px")
