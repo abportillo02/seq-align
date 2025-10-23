@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #SBATCH --job-name=mapping
 #SBATCH --output=/home/abportillo/github_repo/seq-align/mafft/mapping.out
 #SBATCH --error=/home/abportillo/github_repo/seq-align/mafft/mapping.err
