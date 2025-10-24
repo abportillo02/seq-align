@@ -2,7 +2,7 @@ from Bio import SeqIO
 import os
 
 # input_fasta = "/home/abportillo/github_repo/seq-align/mafft/dmr_hervh_aligned.fasta" orignal analysis
-input_fasta = "/home/abportillo/github_repo/seq-align/mafft/dmr_hervh_subset.fasta"
+input_fasta = "/home/abportillo/github_repo/seq-align/mafft/dmr_hervh_subset_aligned.fasta"
 output_dir = "/home/abportillo/github_repo/seq-align/mafft"
 os.makedirs(output_dir, exist_ok=True)
 
