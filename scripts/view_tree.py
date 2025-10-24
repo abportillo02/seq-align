@@ -1,7 +1,7 @@
 from ete3 import Tree, TreeStyle, TextFace
 
 # Load tree
-tree = Tree("/home/abportillo/github_repo/seq-align/mafft/trimmed_dmr_hervh_aligned.phy_phyml_tree.txt")
+tree = Tree("/home/abportillo/github_repo/seq-align/mafft/tree.nwk")
 
 # Load name mapping
 mapping = {}
