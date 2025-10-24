@@ -28,8 +28,8 @@ for leaf in tree.iter_leaves():
 
 # Tree style
 ts = TreeStyle()
-ts.show_leaf_name = False  # We use custom faces
+ts.show_leaf_name = False
 ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted", fsize=20), column=0)
 
-# Save high-resolution tree image
-tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_highlighted.png", tree_style=ts, w=3000, units="px")
+# Save as PDF
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_highlighted.pdf", tree_style=ts, w=3000, units="px")
