@@ -85,6 +85,6 @@ To disable this change, add the --leavegappyregion option. -->
 
 # seqmagick convert fasta to .phy file Ex: seqmagick convert trimmed_dmr_hervh_aligned.fasta trimmed_dmr_hervh_aligned.phy
 
-# phyml.sh to get phy file (text files were empty)
+# phyml.sh to get phy file (text files were empty) so skipped
 # So decided to do FastTree -nt trimmed_dmr_hervh_aligned.phy > tree.nwk
 # view tree.py to map back names and visualize
