@@ -18,15 +18,16 @@ for leaf in tree.iter_leaves():
         leaf.name = full_name
         if full_name.startswith("HERVH-dmr::"):
             style = NodeStyle()
-            style["fgcolor"] = "red"      # Text color
-            style["size"] = 10            # Node size
-            style["shape"] = "sphere"     # Optional: make it stand out
+            style["fgcolor"] = "red"
+            style["size"] = 10
+            style["shape"] = "sphere"
             leaf.set_style(style)
 
-# Tree style
+# Tree style with circular layout
 ts = TreeStyle()
 ts.show_leaf_name = True
+ts.mode = "c"  # Circular layout
 ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted", fsize=20), column=0)
 
-# Save tree image
-tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_colored.png", tree_style=ts, w=800, units="px")
+# Save tree as high-resolution PDF
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_colored.pdf", tree_style=ts, w=3000, units="px")
