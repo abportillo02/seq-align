@@ -19,7 +19,7 @@ for leaf in tree.iter_leaves():
         if full_name.startswith("HERVH-dmr::"):
             style = NodeStyle()
             style["fgcolor"] = "red"
-            style["size"] = 100  # Very large node size
+            style["size"] = 700  # Very large node size
             style["shape"] = "sphere"
             leaf.set_style(style)
             leaf.add_face(TextFace(full_name, fsize=20, fgcolor="red", bold=True), column=0)
