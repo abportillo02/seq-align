@@ -19,10 +19,10 @@ for leaf in tree.iter_leaves():
         if full_name.startswith("HERVH-dmr::"):
             style = NodeStyle()
             style["fgcolor"] = "red"
-            style["size"] = 20
+            style["size"] = 100  # Very large node size
             style["shape"] = "sphere"
             leaf.set_style(style)
-            leaf.add_face(TextFace(full_name, fsize=14, fgcolor="red"), column=0)
+            leaf.add_face(TextFace(full_name, fsize=20, fgcolor="red", bold=True), column=0)
         else:
             leaf.add_face(TextFace(full_name, fsize=10), column=0)
 
@@ -30,7 +30,7 @@ for leaf in tree.iter_leaves():
 ts = TreeStyle()
 ts.show_leaf_name = False
 ts.mode = "c"  # Circular layout
-ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted (Circular)", fsize=20), column=0)
+ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted (Circular)", fsize=24, bold=True), column=0)
 
 # Save as high-resolution PDF
-tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_circular.pdf", tree_style=ts, w=3000, units="px")
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_circular.pdf", tree_style=ts, w=4000, units="px")
