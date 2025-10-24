@@ -1,11 +1,11 @@
 from ete3 import Tree, TreeStyle, TextFace, NodeStyle
 
 # Load tree
-tree = Tree("/home/abportillo/github_repo/seq-align/mafft/tree.nwk")
+tree = Tree("/home/abportillo/github_repo/seq-align/mafft/tree_subset.nwk")
 
 # Load name mapping
 mapping = {}
-with open("/home/abportillo/github_repo/seq-align/mafft/name_mapping.tsv") as f:
+with open("/home/abportillo/github_repo/seq-align/mafft/name_mapping_subset.tsv") as f:
     for line in f:
         short, full = line.strip().split("\t")
         mapping[short] = full
@@ -19,7 +19,7 @@ for leaf in tree.iter_leaves():
         if full_name.startswith("HERVH-dmr::"):
             style = NodeStyle()
             style["fgcolor"] = "red"
-            style["size"] = 700  # Very large node size
+            style["size"] = 100  # Very large node size
             style["shape"] = "sphere"
             leaf.set_style(style)
             leaf.add_face(TextFace(full_name, fsize=20, fgcolor="red", bold=True), column=0)
@@ -33,4 +33,4 @@ ts.mode = "c"  # Circular layout
 ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted (Circular)", fsize=24, bold=True), column=0)
 
 # Save as high-resolution PDF
-tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_circular.pdf", tree_style=ts, w=4000, units="px")
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_subset_tree_dmr_circular.pdf", tree_style=ts, w=4000, units="px")
