@@ -81,7 +81,7 @@ The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
 It tends to insert more gaps into gap-rich regions than previous versions.
 To disable this change, add the --leavegappyregion option. -->
 
-# trimming using trimal 
+# trimming "int" file using trimal 
 # seqmagick convert fasta to .phy file 
 # phyml to get phy file (text files were empty)
 # So decided to do FastTree -nt trimmed_dmr_hervh_aligned.phy > tree.nwk
