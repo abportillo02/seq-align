@@ -10,7 +10,7 @@ with open("/home/abportillo/github_repo/seq-align/mafft/name_mapping.tsv") as f:
         short, full = line.strip().split("\t")
         mapping[short] = full
 
-# Rename leaves and color DMR-HERVHs
+# Rename leaves and enhance DMR-HERVHs
 for leaf in tree.iter_leaves():
     original_name = leaf.name
     if original_name in mapping:
@@ -19,15 +19,17 @@ for leaf in tree.iter_leaves():
         if full_name.startswith("HERVH-dmr::"):
             style = NodeStyle()
             style["fgcolor"] = "red"
-            style["size"] = 10
+            style["size"] = 20
             style["shape"] = "sphere"
             leaf.set_style(style)
+            leaf.add_face(TextFace(full_name, fsize=14, fgcolor="red"), column=0)
+        else:
+            leaf.add_face(TextFace(full_name, fsize=10), column=0)
 
-# Tree style with circular layout
+# Tree style
 ts = TreeStyle()
-ts.show_leaf_name = True
-ts.mode = "c"  # Circular layout
+ts.show_leaf_name = False  # We use custom faces
 ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted", fsize=20), column=0)
 
-# Save tree as high-resolution PDF
-tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_colored.pdf", tree_style=ts, w=3000, units="px")
+# Save high-resolution tree image
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_highlighted.png", tree_style=ts, w=3000, units="px")
