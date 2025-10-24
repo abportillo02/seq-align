@@ -1,7 +1,7 @@
 from ete3 import Tree, TreeStyle, TextFace, NodeStyle
 
 # Load tree
-tree = Tree("/home/abportillo/github_repo/seq-align/mafft/tree_subset.nwk")
+tree = Tree("/home/abportillo/github_repo/seq-align/mafft/tree_subset_200.nwk")
 
 # Load name mapping
 mapping = {}
@@ -33,4 +33,4 @@ ts.mode = "c"  # Circular layout
 ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted (Circular)", fsize=24, bold=True), column=0)
 
 # Save as high-resolution PDF
-tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_subset_tree_dmr_circular.pdf", tree_style=ts, w=4000, units="px")
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_subset200_tree_dmr_circular.pdf", tree_style=ts, w=4000, units="px")
