@@ -29,7 +29,8 @@ for leaf in tree.iter_leaves():
 # Tree style
 ts = TreeStyle()
 ts.show_leaf_name = False
-ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted", fsize=20), column=0)
+ts.mode = "c"  # Circular layout
+ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted (Circular)", fsize=20), column=0)
 
-# Save as PDF
-tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_highlighted.pdf", tree_style=ts, w=3000, units="px")
+# Save as high-resolution PDF
+tree.render("/home/abportillo/github_repo/seq-align/mafft/hervh_tree_dmr_circular.pdf", tree_style=ts, w=3000, units="px")
