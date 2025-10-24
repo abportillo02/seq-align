@@ -13,4 +13,4 @@
 source /home/abportillo/.bashrc
 conda activate /home/abportillo/.conda/envs/mamba_abner_BC
 
-FastTree -nt /home/abportillo/github_repo/seq-align/mafft/trimmed_dmr_hervh_subset_aligned.phy > /home/abportillo/github_repo/seq-align/mafft/tree_subset.nwk
+FastTree -nt /home/abportillo/github_repo/seq-align/mafft/trimmed_dmr_hervh_subset_aligned.phy > /home/abportillo/github_repo/seq-align/mafft/tree_subset_200.nwk
