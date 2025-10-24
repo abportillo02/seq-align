@@ -15,7 +15,8 @@ conda activate /home/abportillo/.conda/envs/mamba_abner_BC
 
 BEDTOOLS="/home/abportillo/.conda/envs/mamba_abner_BC/bin/bedtools"
 REFERENCE_FASTA="/home/abportillo/genomes/hg38/hg38_p14.fa"
-MERGED_BED="/home/abportillo/github_repo/seq-align/mafft/merged_HERVH.bed"
-OUTDIR="/home/abportillo/github_repo/seq-align/mafft/dmr_hervh.fasta"
+# MERGED_BED="/home/abportillo/github_repo/seq-align/mafft/merged_HERVH.bed" # orignal analysis
+MERGED_BED="/home/abportillo/github_repo/seq-align/mafft/merged_HERVH_subset.bed"
+OUTDIR="/home/abportillo/github_repo/seq-align/mafft/dmr_hervh_subset.fasta"
 
 ${BEDTOOLS} getfasta -fi ${REFERENCE_FASTA} -bed ${MERGED_BED} -fo ${OUTDIR} -name
