@@ -2,7 +2,7 @@
 
 # Get merged bed and concatenateed
 # Get Fasta 
-# ran mapping to truncate headers and but be able to map back at the end
+
 # run MAFFT on bash (computer not slurm doesnt work for some reason)
 <!-- bash mafft_alignment.sh 
 nthread = 16
@@ -80,9 +80,11 @@ For more information, see 'mafft --help', 'mafft --man' and the mafft page.
 The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
 It tends to insert more gaps into gap-rich regions than previous versions.
 To disable this change, add the --leavegappyregion option. -->
+# ran mapping to truncate headers and but be able to map back at the end
+# trimming "int" file using trimal Ex: trimal -in dmr_hervh_aligned_int.fasta -out trimmed_dmr_hervh_aligned.fasta -gt 0.1
 
-# trimming "int" file using trimal 
-# seqmagick convert fasta to .phy file 
-# phyml to get phy file (text files were empty)
+# seqmagick convert fasta to .phy file Ex: seqmagick convert trimmed_dmr_hervh_aligned.fasta trimmed_dmr_hervh_aligned.phy
+
+# phyml.sh to get phy file (text files were empty)
 # So decided to do FastTree -nt trimmed_dmr_hervh_aligned.phy > tree.nwk
 # view tree.py to map back names and visualize
