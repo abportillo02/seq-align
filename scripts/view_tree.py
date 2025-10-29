@@ -19,7 +19,7 @@ for leaf in tree.iter_leaves():
     if original_name in mapping:
         full_name = mapping[original_name]
         leaf.name = full_name
-        if full_name.startswith("HERVH-dmr::"):
+        if full_name.startswith("DMR-HERVH::"):
             style = NodeStyle()
             style["fgcolor"] = "red"
             style["size"] = 100
