@@ -21,5 +21,5 @@ mafft="/home/abportillo/.conda/envs/mamba_abner_BC/bin/mafft"
 # ${mafft} --auto --thread 16 /home/abportillo/github_repo/seq-align/mafft/dmr_hervh.fasta \  # original 
 # > /home/abportillo/github_repo/seq-align/mafft/dmr_hervh_aligned.fasta
 
-${mafft} --auto --thread 16 /home/abportillo/github_repo/seq-align/mafft/dmr_hervh_subset.fasta \
-> /home/abportillo/github_repo/seq-align/mafft/dmr_hervh_subset_aligned.fasta
+${mafft} --auto --thread 16 /home/abportillo/github_repo/seq-align/mafft/real_dmr_hervh_subset.fasta \
+> /home/abportillo/github_repo/seq-align/mafft/real_dmr_hervh_subset_aligned.fasta
