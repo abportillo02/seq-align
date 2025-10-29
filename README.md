@@ -81,8 +81,10 @@ The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
 It tends to insert more gaps into gap-rich regions than previous versions.
 To disable this change, add the --leavegappyregion option. -->
 # ran mapping to truncate headers and but be able to map back at the end
-# trimming "int" file using trimal Ex: trimal -in dmr_hervh_aligned_int.fasta -out trimmed_dmr_hervh_aligned.fasta -gt 0.1
+# trimming aligned file file using trimal Ex: trimal -in dmr_hervh_aligned.fasta -out trimmed_dmr_hervh_aligned.fasta -gt 0.1
 
+# run more mapping.py
+ 
 # seqmagick convert fasta to .phy file Ex: seqmagick convert trimmed_dmr_hervh_aligned.fasta trimmed_dmr_hervh_aligned.phy
 
 # phyml.sh to get phy file (text files were empty) so skipped
