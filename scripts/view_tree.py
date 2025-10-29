@@ -1,3 +1,6 @@
+import os
+os.environ["QT_QPA_PLATFORM"] = "offscreen"
+
 from ete3 import Tree, TreeStyle, TextFace, NodeStyle
 
 # Load tree
@@ -19,7 +22,7 @@ for leaf in tree.iter_leaves():
         if full_name.startswith("HERVH-dmr::"):
             style = NodeStyle()
             style["fgcolor"] = "red"
-            style["size"] = 100  # Very large node size
+            style["size"] = 100
             style["shape"] = "sphere"
             leaf.set_style(style)
             leaf.add_face(TextFace(full_name, fsize=20, fgcolor="red", bold=True), column=0)
@@ -29,8 +32,9 @@ for leaf in tree.iter_leaves():
 # Tree style
 ts = TreeStyle()
 ts.show_leaf_name = False
-ts.mode = "c"  # Circular layout
+ts.mode = "c"
 ts.title.add_face(TextFace("HERVH Tree with DMRs Highlighted (Circular)", fsize=24, bold=True), column=0)
 
-# Save as high-resolution PDF
-tree.render("/home/abportillo/github_repo/seq-align/mafft/dmr_hervh_subset200_tree_dmr_circular.pdf", tree_style=ts, w=4000, units="px")
+# Save as PDF
+tree.render("/home/abportillo/github_repo/seq-align/mafft/dmr_hervh_subset200_tree_dmr_circular.pdf",
+            tree_style=ts, w=4000, units="px")
