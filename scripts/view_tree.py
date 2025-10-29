@@ -1,7 +1,7 @@
 from ete3 import Tree, TreeStyle, TextFace, NodeStyle
 
 # Load tree
-tree = Tree("/home/abportillo/github_repo/seq-align/mafft/tree_subset_200.nwk")
+tree = Tree("/home/abportillo/github_repo/seq-align/mafft/real_tree_subset_200.nwk")
 
 # Load name mapping
 mapping = {}

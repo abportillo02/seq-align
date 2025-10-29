@@ -11,27 +11,28 @@ source ~/.bashrc
 conda activate mamba_abner_BC
 
 # ==== INPUT FILES ====
-ORIG_FASTA="/home/abportillo/github_repo/seq-align/mafft/real_dmr_hervh_subset_aligned.fasta"
-TRIM_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned.fasta"
+export ORIG_FASTA="/home/abportillo/github_repo/seq-align/mafft/real_dmr_hervh_subset_aligned.fasta"
+export TRIM_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned.fasta"
 
 # ==== OUTPUT FILES ====
-OUT_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned_renamed.fasta"
-OUT_MAP="/home/abportillo/github_repo/seq-align/mafft/trimmed_to_original_mapping.tsv"
+export OUT_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned_renamed.fasta"
+export OUT_MAP="/home/abportillo/github_repo/seq-align/mafft/trimmed_to_original_mapping.tsv"
 
 # ==== PYTHON SCRIPT ====
-python <<EOF
+python <<'EOF'
+import os
 from Bio import SeqIO
 
-orig_fasta = "${ORIG_FASTA}"
-trimmed_fasta = "${TRIM_FASTA}"
-output_fasta = "${OUT_FASTA}"
-mapping_tsv = "${OUT_MAP}"
+orig_fasta = os.environ["ORIG_FASTA"]
+trimmed_fasta = os.environ["TRIM_FASTA"]
+output_fasta = os.environ["OUT_FASTA"]
+mapping_tsv = os.environ["OUT_MAP"]
 
 orig_records = list(SeqIO.parse(orig_fasta, "fasta"))
 trimmed_records = list(SeqIO.parse(trimmed_fasta, "fasta"))
 
 if len(orig_records) != len(trimmed_records):
-    print(f"Sequence count mismatch: {len(orig_records)} original vs {len(trimmed_records)} trimmed")
+    raise ValueError(f"Sequence count mismatch: {len(orig_records)} original vs {len(trimmed_records)} trimmed")
 
 with open(output_fasta, "w") as out_fa, open(mapping_tsv, "w") as out_map:
     out_map.write("trimmed_index\toriginal_header\tnew_header\n")
