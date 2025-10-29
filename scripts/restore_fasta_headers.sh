@@ -6,63 +6,47 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4G
 
-# Load conda env
+# Load conda environment
 source ~/.bashrc
 conda activate mamba_abner_BC
 
 # ==== INPUT FILES ====
-export ORIG_FASTA="/home/abportillo/github_repo/seq-align/mafft/real_dmr_hervh_subset_aligned.fasta"
-export TRIM_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned.fasta"
+ORIG_FASTA="/home/abportillo/github_repo/seq-align/mafft/real_dmr_hervh_subset_aligned.fasta"
+TRIM_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned.fasta"
 
 # ==== OUTPUT FILES ====
-export OUT_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned_renamed.fasta"
-export OUT_MAP="/home/abportillo/github_repo/seq-align/mafft/trimmed_to_original_mapping.tsv"
+OUT_FASTA="/home/abportillo/github_repo/seq-align/mafft/trimmed_real_dmr_hervh_subset_aligned_renamed.fasta"
+OUT_MAP="/home/abportillo/github_repo/seq-align/mafft/trimmed_to_original_mapping.tsv"
 
-python <<'EOF'
-import os
+# ==== PYTHON SCRIPT ====
+python <<EOF
 from Bio import SeqIO
 
-orig_fasta = os.environ["ORIG_FASTA"]
-trimmed_fasta = os.environ["TRIM_FASTA"]
-output_fasta = os.environ["OUT_FASTA"]
-mapping_tsv = os.environ["OUT_MAP"]
+orig_fasta = "${ORIG_FASTA}"
+trimmed_fasta = "${TRIM_FASTA}"
+output_fasta = "${OUT_FASTA}"
+mapping_tsv = "${OUT_MAP}"
 
 orig_records = list(SeqIO.parse(orig_fasta, "fasta"))
 trimmed_records = list(SeqIO.parse(trimmed_fasta, "fasta"))
 
-print(f"Original: {len(orig_records)} sequences")
-print(f"Trimmed: {len(trimmed_records)} sequences")
+print(f"Original sequences: {len(orig_records)}")
+print(f"Trimmed sequences: {len(trimmed_records)}")
 
-if len(trimmed_records) > len(orig_records):
-    raise ValueError("Trimmed FASTA has more sequences than the original, which should not happen.")
+# Handle cases where trimal removed all-gap sequences
+min_len = min(len(orig_records), len(trimmed_records))
 
-# Prepare output
 with open(output_fasta, "w") as out_fa, open(mapping_tsv, "w") as out_map:
-    out_map.write("index\ttrimmed_header\toriginal_header\tnew_id\n")
+    out_map.write("unique_id\toriginal_header\n")
 
-    # Map trimmed sequences to originals by order, skipping removed ones
-    orig_index = 0
-    for i, trim_rec in enumerate(trimmed_records, start=1):
-        while orig_index < len(orig_records) and orig_records[orig_index].seq.count("-") == len(orig_records[orig_index].seq):
-            orig_index += 1  # Skip all-gap sequences in original if any
-
-        if orig_index >= len(orig_records):
-            break
-
-        orig_rec = orig_records[orig_index]
-        orig_index += 1
-
-        base = orig_rec.id.split("::")[0]
-        coord = orig_rec.id.split("::")[-1].replace(":", "_").replace("-", "_")
-        new_id = f"{base}_{coord}"
-
+    for i, (trim_rec, orig_rec) in enumerate(zip(trimmed_records[:min_len], orig_records[:min_len]), start=1):
+        new_id = f"seq{i:04d}"
         trim_rec.id = new_id
         trim_rec.description = ""
-
         SeqIO.write(trim_rec, out_fa, "fasta")
-        out_map.write(f"{i}\t{trim_rec.id}\t{orig_rec.id}\t{new_id}\n")
+        out_map.write(f"{new_id}\t{orig_rec.id}\n")
 
-print(f"Restored headers for {len(trimmed_records)} trimmed sequences.")
+print(f"Finished renaming {min_len} records")
 print(f"Output FASTA: {output_fasta}")
 print(f"Mapping file: {mapping_tsv}")
 EOF
